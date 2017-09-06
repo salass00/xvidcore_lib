@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE library SYSTEM "library.dtd">
+<library name="xvidcore" basename="XvidCoreBase" basetype="XvidCoreBase" openname="xvidcore.library">
+	<include>libraries/xvidcore.h</include>
+	<interface name="main" version="1.0" struct="XvidCoreIFace" prefix="_XvidCore_" asmprefix="IXvidCore" global="IXvidCore">
+		<method name="Obtain" result="uint32"/>
+		<method name="Release" result="uint32"/>
+		<method name="Expunge" result="void" status="unimplemented"/>
+		<method name="Clone" result="struct Interface *" status="unimplemented"/>
+		<method name="xvid_get_plugin_func" result="xvid_plugin_func *">
+			<arg name="plugin" type="int"/>
+		</method>
+		<method name="xvid_global" result="int">
+			<arg name="handle" type="void *"/>
+			<arg name="opt" type="int"/>
+			<arg name="param1" type="void *"/>
+			<arg name="param2" type="void *"/>
+		</method>
+		<method name="xvid_decore" result="int">
+			<arg name="handle" type="void *"/>
+			<arg name="opt" type="int"/>
+			<arg name="param1" type="void *"/>
+			<arg name="param2" type="void *"/>
+		</method>
+		<method name="xvid_encore" result="int">
+			<arg name="handle" type="void *"/>
+			<arg name="opt" type="int"/>
+			<arg name="param1" type="void *"/>
+			<arg name="param2" type="void *"/>
+		</method>
+	</interface>
+</library>

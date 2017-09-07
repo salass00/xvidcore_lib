@@ -18,22 +18,41 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef LIBRARIES_XVIDCORE_H
-#define LIBRARIES_XVIDCORE_H
+#include "../xvidcore_internal.h"
+#include "../xvidcore_vectors.h"
 
-#include <xvid.h>
+/****** xvidcore/main/xvid_global *******************************************
+*
+*   NAME
+*      xvid_global -- Description
+*
+*   SYNOPSIS
+*      int xvid_global(void *handle, int opt, void *param1, void *param2);
+*
+*   FUNCTION
+*
+*   INPUTS
+*       handle - 
+*       opt - 
+*       param1 - 
+*       param2 - 
+*
+*   RESULT
+*       The result ...
+*
+*   EXAMPLE
+*
+*   NOTES
+*
+*   BUGS
+*
+*   SEE ALSO
+*
+*****************************************************************************
+*
+*/
 
-/* For xvid_get_plugin_func() */
-enum {
-	XVID_PLUGIN_SINGLE = 0,
-	XVID_PLUGIN_2PASS1,
-	XVID_PLUGIN_2PASS2,
-	XVID_PLUGIN_LUMIMASKING,
-	XVID_PLUGIN_PSNR,
-	XVID_PLUGIN_DUMP,
-	XVID_PLUGIN_SSIM,
-	XVID_PLUGIN_PSNRHVSM
-};
-
-#endif /* LIBRARIES_XVIDCORE_H */
+int _XvidCore_xvid_global(struct XvidCoreIFace *Self, void *handle, int opt, void *param1, void *param2) {
+	return xvid_global(handle, opt, param1, param2);
+}
 

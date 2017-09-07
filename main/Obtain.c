@@ -18,22 +18,10 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef LIBRARIES_XVIDCORE_H
-#define LIBRARIES_XVIDCORE_H
+#include "../xvidcore_internal.h"
+#include "../xvidcore_vectors.h"
 
-#include <xvid.h>
-
-/* For xvid_get_plugin_func() */
-enum {
-	XVID_PLUGIN_SINGLE = 0,
-	XVID_PLUGIN_2PASS1,
-	XVID_PLUGIN_2PASS2,
-	XVID_PLUGIN_LUMIMASKING,
-	XVID_PLUGIN_PSNR,
-	XVID_PLUGIN_DUMP,
-	XVID_PLUGIN_SSIM,
-	XVID_PLUGIN_PSNRHVSM
-};
-
-#endif /* LIBRARIES_XVIDCORE_H */
+uint32 _XvidCore_Obtain(struct XvidCoreIFace *Self) {
+	return ++Self->Data.RefCount;
+}
 

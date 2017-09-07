@@ -18,22 +18,17 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef LIBRARIES_XVIDCORE_H
-#define LIBRARIES_XVIDCORE_H
+#ifndef XVIDCORE_INTERNAL_H
+#define XVIDCORE_INTERNAL_H
 
-#include <xvid.h>
+#include <proto/xvidcore.h>
+#include <proto/exec.h>
+#include <dos/dos.h>
 
-/* For xvid_get_plugin_func() */
-enum {
-	XVID_PLUGIN_SINGLE = 0,
-	XVID_PLUGIN_2PASS1,
-	XVID_PLUGIN_2PASS2,
-	XVID_PLUGIN_LUMIMASKING,
-	XVID_PLUGIN_PSNR,
-	XVID_PLUGIN_DUMP,
-	XVID_PLUGIN_SSIM,
-	XVID_PLUGIN_PSNRHVSM
+struct XvidCoreBase {
+	struct Library libNode;
+	BPTR           segList;
 };
 
-#endif /* LIBRARIES_XVIDCORE_H */
+#endif /* XVIDCORE_INTERNAL_H */
 

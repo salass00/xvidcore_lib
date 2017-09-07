@@ -1,0 +1,52 @@
+; Script for generating a release archive
+
+make all
+
+set xvidcoredir xvidcore-1.3.4
+set destdir RAM:mkrelease
+set fullvers `version file xvidcore.library`
+set numvers `cut "$fullvers" word 2`
+
+delete all force ${destdir}
+makedir all force ${destdir}/xvidcore_lib-$numvers/Libs
+makedir all force ${destdir}/xvidcore_lib-$numvers/SDK/local/newlib/include/proto
+makedir all force ${destdir}/xvidcore_lib-$numvers/SDK/local/newlib/include/interfaces
+makedir all force ${destdir}/xvidcore_lib-$numvers/SDK/local/newlib/include/inline4
+makedir all force ${destdir}/xvidcore_lib-$numvers/SDK/local/newlib/include/libraries
+
+copy clone Install ${destdir}/xvidcore_lib-$numvers
+copy clone LICENSE ${destdir}/xvidcore_lib-$numvers
+copy clone releasenotes ${destdir}/xvidcore_lib-$numvers
+copy clone xvidcore.library ${destdir}/xvidcore_lib-$numvers/Libs
+copy clone include/proto/xvidcore.h ${destdir}/xvidcore_lib-$numvers/SDK/local/newlib/include/proto
+copy clone include/interfaces/xvidcore.h ${destdir}/xvidcore_lib-$numvers/SDK/local/newlib/include/interfaces
+copy clone include/inline4/xvidcore.h ${destdir}/xvidcore_lib-$numvers/SDK/local/newlib/include/inline4
+copy clone include/libraries/xvidcore.h ${destdir}/xvidcore_lib-$numvers/SDK/local/newlib/include/libraries
+copy clone ${xvidcoredir}/src/xvid.h ${destdir}/xvidcore_lib-$numvers/SDK/local/newlib/include
+
+sed "s/xvidcore_lib-xx.xx/xvidcore_lib-$numvers/g" AutoInstall > ${destdir}/AutoInstall
+
+echo "Short:        XvidCore as an AmigaOS shared library"  > ${destdir}/xvidcore_lib-$numvers/xvidcore_lib.readme
+echo "Author:       Fredrik Wikstrom"                      >> ${destdir}/xvidcore_lib-$numvers/xvidcore_lib.readme
+echo "Uploader:     Fredrik Wikstrom <fredrik@a500.org>"   >> ${destdir}/xvidcore_lib-$numvers/xvidcore_lib.readme
+echo "Type:         util/libs"                             >> ${destdir}/xvidcore_lib-$numvers/xvidcore_lib.readme
+echo "Version:      $numvers"                              >> ${destdir}/xvidcore_lib-$numvers/xvidcore_lib.readme
+echo "Architecture: ppc-amigaos"                           >> ${destdir}/xvidcore_lib-$numvers/xvidcore_lib.readme
+echo ""                                                    >> ${destdir}/xvidcore_lib-$numvers/xvidcore_lib.readme
+type README                                                >> ${destdir}/xvidcore_lib-$numvers/xvidcore_lib.readme
+
+copy clone ENV:Sys/def_drawer.info ${destdir}/xvidcore_lib-$numvers.info
+copy clone ENV:Sys/def_install.info ${destdir}/xvidcore_lib-$numvers/Install.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/xvidcore_lib-$numvers/xvidcore_lib.readme.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/xvidcore_lib-$numvers/LICENSE.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/xvidcore_lib-$numvers/releasenotes.info
+
+changetooltype ${destdir}/xvidcore_lib-$numvers/Install.info ADD "APPNAME=xvidcore.library"
+
+delete force RAM:xvidcore_lib.lha
+lha a -x -r RAM:xvidcore_lib.lha ${destdir}/
+
+echo "RAM:xvidcore_lib.lha created"
+
+copy clone ${destdir}/xvidcore_lib-$numvers/xvidcore_lib.readme RAM:
+

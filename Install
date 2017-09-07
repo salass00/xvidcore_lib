@@ -1,0 +1,10 @@
+(welcome)
+(set @default-dest "LIBS:")
+(copylib
+	(prompt "Copying xvidcore.library")
+	(help @copylib-help)
+	(source "Libs/xvidcore.library")
+	(dest @default-dest)
+	(confirm)
+)
+(exit)

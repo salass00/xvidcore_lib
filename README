@@ -1,0 +1,17 @@
+An AmigaOS shared library based on libxvidcore. Currently based on the 1.3.4
+version.
+
+Installation:
+
+Copy Libs/xvidcore.library LIBS:
+
+Source code:
+
+The source code for current and older versions is available on github:
+
+https://github.com/salass00/xvidcore_lib
+
+Changes:
+
+For a list of changes in this and earlier versions see the releasenotes file.
+

@@ -1,0 +1,4 @@
+; AutoInstall script for AmiUpdate
+
+CopyStore xvidcore_lib-xx.xx/Libs/xvidcore.library LIBS:
+
